@@ -1,0 +1,59 @@
+.panel.panel-default
+	.panel-heading
+		%h4.panel-title
+			稷下社区第
+			=@member.id
+			号会员 &nbsp;•&nbsp;
+			加入于
+			=@member.created_at.localtime
+	.panel-body
+		%h4
+			=member_avatar(@member)
+			=@member.name
+	%table.table.table-striped
+		- if @member.bio
+			%tr
+				%td{style: "width: 100px; text-align: right; color: darkgray;"} 所属兵团 :
+				%td=@member.bio
+		- if @member.hobby
+			%tr
+				%td{style: "width: 100px; text-align: right; color: darkgray;"} 技能点 :
+				%td=@member.hobby
+		- if @member.fanfou
+			%tr
+				%td{style: "width: 100px; text-align: right; color: darkgray;"} 
+					=image_tag(root_url.to_s + "fanfou.jpg", style: "width: 16px;")
+					饭否 :
+				%td= link_to "@#{@member.fanfou}", "http://fanfou.com/#{@member.fanfou}"
+		- if @member.weibo
+			%tr
+				%td{style: "width: 100px; text-align: right; color: darkgray;"} 
+					=image_tag(root_url.to_s + "weibo.ico", style: "width: 16px;")
+					微博 :
+				%td= link_to "@#{@member.weibo}", "http://weibo.com/#{@member.weibo}"
+		- if @member.twitter
+			%tr
+				%td{style: "width: 100px; text-align: right; color: darkgray;"} 
+					=image_tag(root_url.to_s + "twitter.ico", style: "width: 16px;")
+					Twitter :
+				%td= link_to "@#{@member.twitter}", "http://twitter.com/#{@member.twitter}"
+
+
+
+.panel.panel-default
+	.panel-heading
+		%h4.panel-title 
+			=@member.name 
+			最近回复了
+	%ul.list-group
+		- @replies.each do |reply|
+			%li.list-group-item.meta.shadow-box
+				回复了
+				=link_to reply.topic.member.name, member_url(reply.topic.member.name)
+				创建的主题 &nbsp;›&nbsp; 
+				=link_to reply.topic.title, single_topic_url(reply.topic)
+			%li.list-group-item
+				.reply-body
+					=markdown(reply.body).html_safe
+	.panel-footer
+		=will_paginate @replies

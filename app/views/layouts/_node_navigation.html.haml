@@ -1,0 +1,30 @@
+.panel.panel-default.node-navigation
+	.panel-heading
+		%h4.panel-title
+			节点导航
+	%table.table
+		%tr
+			%td.node-title 打工吧！魔王大人
+			%td.node-links 
+				- Node.jobs.each do |node|
+					=link_to node.name, node_url(node.slogan)
+		%tr
+			%td.node-title 进击の二次元!
+			%td.node-links 
+				- Node.animes.each do |node|
+					=link_to node.name, node_url(node.slogan)
+		%tr
+			%td.node-title 社团联合会の日常
+			%td.node-links
+				- Node.leagues.each do |node|
+					=link_to node.name, node_url(node.slogan)
+		%tr
+			%td.node-title 技术宅
+			%td.node-links
+				- Node.techs.each do |node|
+					=link_to node.name, node_url(node.slogan)
+		%tr
+			%td.node-title 分区域战斗
+			%td.node-links
+				- Node.academys.each do |node|
+					=link_to node.name, node_url(node.slogan)

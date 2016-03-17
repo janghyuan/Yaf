@@ -1,0 +1,20 @@
+.panel.panel-default
+	.panel-heading
+		%h4.panel-title
+			通知系统
+	%ul.list-group
+		- @notifications.each do |noti|
+			%li.list-group-item
+				%h6
+					=link_to "@#{noti.sender.name}", member_url(noti.sender.name)
+					在主题
+					=link_to noti.topic.title, single_topic_url(noti.topic)
+					提到了你
+				- if !noti.reply.nil?
+					%blockquote
+						=markdown(noti.reply.body).html_safe
+						%footer
+							=noti.reply.floor
+							楼
+	.panel-footer
+		=will_paginate @notifications

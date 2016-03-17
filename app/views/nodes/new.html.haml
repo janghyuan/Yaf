@@ -1,0 +1,11 @@
+.panel.panel-default
+	.panel-heading
+		%h4.panel-title
+			创建新节点
+	.panel-body
+		=simple_form_for @node do |f|
+			= f.input :name, label: false, placeholder: "节点名称"
+			= f.input :slogan, label: false, placeholder: "节点 slogan"
+			= f.input :parent_slogan, label: false, placeholder: "父节点 slogan"
+
+			= f.button :submit, "创建新节点", class: "btn btn-success btn-xs"

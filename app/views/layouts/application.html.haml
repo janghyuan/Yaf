@@ -1,0 +1,19 @@
+!!!
+%html
+	%head
+		%title 稷下社区
+		= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true 
+		= javascript_include_tag 'application', 'data-turbolinks-track' => true
+		= csrf_meta_tags
+
+	%body
+		= render 'layouts/header'
+		.container
+			.row
+				.col-md-11
+					= yield
+					= render 'layouts/node_navigation'
+				.col-md-5
+					= render 'layouts/sidebar'
+
+		= render 'layouts/footer'

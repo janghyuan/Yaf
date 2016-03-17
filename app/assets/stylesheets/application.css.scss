@@ -1,0 +1,216 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+ $link-color: #778087;
+ $link-hover-color: #4d5256;
+ $navbar-height: 45px;
+ $font-family-sans-serif: "Helvetica Neue", "Luxi Sans", "DejaVu Sans", Tahoma, "Hiragino Sans GB", "Microsoft Yahei", sans-serif;
+ $grid-columns: 16;
+ $grid-gutter-width: 15px;
+ $container-large-desktop: 940px + $grid-gutter-width;
+
+@import "bootstrap-sprockets";
+@import "bootstrap";
+html, body {
+	background: #e2e2e2; 
+	background: #DAD299; /* fallback for old browsers */
+	background: -webkit-linear-gradient(to left, #DAD299 , #B0DAB9); /* Chrome 10-25, Safari 5.1-6 */
+	background: linear-gradient(to left, #DAD299 , #B0DAB9); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+.navbar-default {
+	background: white;
+	background: #ECE9E6; /* fallback for old browsers */
+	background: -webkit-linear-gradient(to left, #ECE9E6 , #FFFFFF); /* Chrome 10-25, Safari 5.1-6 */
+	background: linear-gradient(to left, #ECE9E6 , #FFFFFF); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+	border-bottom: 1px solid #eee;
+	box-shadow: 0 1px 2px rgba(0,0,0,.25),inset 0 1px 0 rgba(255,255,255,.15);
+	box-shadow: 0 2px 8px rgba(0,0,0,.25);
+	.navbar-nav {
+		li {
+			a {
+				font-weight: 600;
+				font-size: 12px;
+			}
+		}
+	}
+}
+.panel-default {
+	.panel-heading {
+		background: white;
+	}
+	.panel-footer {
+		background: #ECE9E6; /* fallback for old browsers */
+		background: -webkit-linear-gradient(to right, #ECE9E6 , #FFFFFF); /* Chrome 10-25, Safari 5.1-6 */
+		background: linear-gradient(to right, #ECE9E6 , #FFFFFF); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+		font-size: 12px;
+		color: #ccc;
+		padding: 7px 15px;
+		a, .previous_page, .next_page, .current {
+			color: #aaa;
+	    background: white;
+	    padding: 3px 6px;
+	    border-radius: 5px;
+	    border: 1px solid #ddd;
+	    margin-right: 2px;
+	    &:hover {
+	    	text-decoration: none;
+	    	box-shadow: 0 0 3px rgba(0,0,0,.1);
+	    	color: #666;
+	    }
+		}
+    .current {
+    	background: #eee;
+    }
+	}
+}
+.pagination {
+	margin: 10px 0;
+}
+.panel-title, .meta {
+	font-size: 12px;
+	color: #ccc;
+}
+.topic-show-title {
+	color: #444;
+	font-size: 24px;
+  font-weight: 500;
+  line-height: 150%;
+  margin: 10px 0px 10px 0px;
+  padding: 0px;
+}
+.topic-flow-title {
+	margin: 0 0 8px;	
+	font-size: 16px;
+	line-height: 130%;
+}
+.replies-count {
+	line-height: 12px;
+  font-weight: bold;
+  color: white;
+  background-color: #969cb1;
+  display: inline-block;
+  padding: 2px 10px 2px 10px;
+  border-radius: 12px;
+  text-decoration: none;
+}
+.replies-floor {
+	font-size: 9px;
+  line-height: 9px;
+  font-weight: 500;
+  border-radius: 10px;
+  display: inline-block;
+  background-color: #f0f0f0;
+  color: #ccc;
+  padding: 2px 5px 2px 5px;
+}
+.user-info-title {
+	margin: 0;
+	font-size: 16px;
+	color: $link-color;
+}
+.no-reply {
+	border: 4px dashed #eee;
+	font-size: 18px;
+	color: white;
+	text-shadow: 0 1px 0 rgba(0,0,0,.25);
+	text-align: center;
+	padding: 10px 20px;
+	margin-bottom: 20px;
+}
+.node-tag {
+	background: #efefef;
+	color: #777;
+	padding: 2px 4px;
+	border-radius: 2px;
+	font-size: 10px;
+}
+.recent-nodes {
+	a {
+		display: inline-block;
+    margin: 0 5px 5px 0;
+    background: white;
+    border: 1px solid #eee;
+    border-radius: 10px;
+    padding: 4px 10px;
+    line-height: 12px;
+    transition: border .3s;
+    &:hover {
+    	text-decoration: none;
+    	border: 1px solid #aaa;
+    }
+	}
+}
+.footer {
+	background: white;
+	min-height: 300px;
+	padding: 20px 0;
+}
+.node-navigation {
+	font-size: 12px;
+	.panel-title {
+		a {
+			color: #778087;
+		}
+	}
+	.node-title {
+		width: 130px;
+		text-align: right;
+		color: darkgray;
+		vertical-align: middle;
+	}
+	.node-links {
+		a {
+			display: inline-block;
+			margin: 0 10px 4px 0;
+			font-size: 14px;
+		}
+	}
+}
+.popular {
+	a {
+		font-size: 12px;
+	}
+}
+.sep {
+	height: 8px;
+}
+.shadow-box {
+	background: rgba(237, 243, 245, 1.0);
+	box-shadow: 0 0 15px rgba(0,0,0,.1) inset;
+}
+.topic-body,.reply-body {
+	h1, h2, h3, h4, h5, h6 {
+		font-size: 14px;
+		font-weight: bold;
+		margin: 20px 0 10px;
+		padding-bottom: 10px;
+		border-bottom: 1px solid #eee;
+	}
+	img {
+		max-width: 100%;
+	}
+}
+.reply-body > p:last-child {
+	margin-bottom: 0;
+}
+span.mod {
+	text-transform: uppercase;
+  font-weight: 500;
+  font-size: 10px;
+  padding: 1px 4px;
+  border-radius: 5px;
+  background: slategrey;
+  color: white;
+}

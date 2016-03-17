@@ -1,0 +1,32 @@
+.panel.panel-default
+  .panel-heading
+    %h4.panel-title
+      账户设置
+  .panel-body
+    = simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }, defaults: { hint_html: { class: "meta" }, wrapper_html: { class: "form-group-sm" } }) do |f|
+      = f.error_notification
+      = f.input :name, required: true, autofocus: true, label: "用户名", disabled: true, hint: "一经注册无法修改：）"
+      = f.input :email, required: true, disabled: true, label: "电子邮件"
+      = f.input :bio, label: "一句话简介「级部、学院」"
+      = f.input :hobby, label: "技能点"
+      = f.input :fanfou, label: "饭否账号"
+      = f.input :weibo, label: "微博账号"
+      = f.input :twitter, label: "Twitter Account"
+
+      - if devise_mapping.confirmable? && resource.pending_reconfirmation?
+        Currently waiting confirmation for: 
+        = resource.unconfirmed_email
+
+      = f.input :password, autocomplete: "off", hint: "如果不想更改密码此部分留空", required: false, label: "新密码"
+      = f.input :password_confirmation, required: false, label: "新密码确认"
+      = f.input :current_password, hint: "我们需要你的当前密码来确认更改", required: true, label: "当前密码"
+
+      = f.label "上传头像", class: "control-label"
+      = image_tag current_member.avatar.url if current_member.avatar?
+      = f.file_field :avatar, accept: 'image/jpeg,image/gif,image/png'
+      %br/
+      = f.button :submit, "更新设置"
+  .panel-footer
+    Unhappy? 
+    = link_to "删除账户", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete
+

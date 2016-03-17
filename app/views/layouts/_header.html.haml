@@ -1,0 +1,13 @@
+.navbar.navbar-default.navbar-static-top
+	.container
+		= link_to "稷下社区", root_url, class: "navbar-brand"
+
+		%ul.nav.navbar-nav.navbar-right
+			%li=link_to "首页", root_url
+			- if member_signed_in?
+				%li=link_to "设置", edit_member_registration_url
+				%li=link_to current_member.name, member_url(current_member.name)
+				%li=link_to "退出", destroy_member_session_url, method: :delete
+			- else
+				%li=link_to "登录", new_member_session_url
+				%li=link_to "注册", new_member_registration_url

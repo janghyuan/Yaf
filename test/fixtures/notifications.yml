@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  member_id: 1
+  topic_id: 1
+  reply_id: 1
+  sender_id: 1
+  unread: false
+
+two:
+  member_id: 1
+  topic_id: 1
+  reply_id: 1
+  sender_id: 1
+  unread: false

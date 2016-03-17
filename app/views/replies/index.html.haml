@@ -1,0 +1,76 @@
+.panel.panel-default.topic-show
+	.panel-heading
+		.media
+			.media-body
+				%span.meta
+					节点 &nbsp;›&nbsp;
+					%strong
+						= link_to @topic.node.name, node_url(@topic.node.slogan)
+				%h1.topic-show-title= @topic.title 
+				%span.meta
+					%strong
+						=link_to @topic.member.name, member_url(@topic.member.name)
+					&nbsp;•&nbsp;
+					= @topic.created_at.localtime
+					&nbsp;•&nbsp;
+					= @topic.click.to_i
+					次点击
+			.media-right
+				= member_avatar @topic.member, size: "73px"
+	- if !@topic.body.empty?
+		.panel-body
+			.topic-body 
+				= markdown(@topic.body).html_safe 
+	.panel-footer
+		=link_to "收藏", add_topic_url(@topic), method: :post
+
+- if @replies.any?
+	.panel.panel-default
+		.panel-heading
+			%h4.panel-title
+				= @replies.count
+				个回复
+				&nbsp;•&nbsp;
+				= @replies.last.created_at.localtime
+		%table.table
+			- @replies.each do |reply|
+				%tr
+					%td{width: "48px", align: "center", valign: "top"}
+						= member_avatar(reply.member)
+					%td
+						%span.meta
+							%strong
+								=link_to reply.member.name, member_url(reply.member.name)
+							&nbsp;•&nbsp;
+							- if reply.member.admin?
+								=image_tag(root_url.to_s + "mod.png", style: "height: 12px; margin-bottom: 2px;")
+								&nbsp;•&nbsp;
+							=time_ago_in_words(reply.created_at) + "前	"
+						.sep
+						.reply-body
+							= markdown(reply.body).html_safe
+					%td{width: "70px", align: "right"}
+						%span.label.label-default.replies-floor 
+							=reply.floor
+
+- else
+	.no-reply
+		我是要成为第一个回复の男人
+
+
+- if member_signed_in?
+	.panel.panel-default
+		.panel-heading
+			%h4.panel-title 
+				创建新回复 &nbsp;•&nbsp; 
+				Markdown Supported &nbsp;•&nbsp; 
+				学习如何使用
+				=link_to "Markdown", "http://www.jianshu.com/p/q81RER" 
+				&nbsp;•&nbsp;
+				=link_to "图床 https://sm.ms", "https://sm.ms"
+		.panel-body
+			=simple_form_for [@topic, @reply] do |f|
+				= f.hidden_field :topic_id, value: @topic.id
+				= f.hidden_field :floor, value: @topic.replies.count + 1
+				= f.input :body, error: "不能为空", label: false, input_html: { rows: 5 }
+				= f.button :submit, "创建新回复", class: "btn btn-success btn-xs"

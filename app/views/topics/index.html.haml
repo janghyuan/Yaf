@@ -1,0 +1,28 @@
+.panel.panel-default
+	.panel-heading
+		%h4.panel-title 首页主题列表
+	%table.table
+		- @topics.each do |topic|
+			%tr
+				%td{width: "48px", align: "center", valign: "top"}
+					= member_avatar(topic.member)
+				%td
+					%h2.topic-flow-title
+						= link_to topic.title, single_topic_url(topic) 
+					%span.meta
+						=link_to topic.node.name, node_url(topic.node.slogan), class: "node-tag"
+						&nbsp;•&nbsp;
+						%strong
+							=link_to topic.member.name, member_url(topic.member.name)
+						&nbsp;•&nbsp;
+						=time_ago_in_words(topic.last_modified) + "前"
+						- if topic.replies.any?
+							&nbsp;•&nbsp;
+							最后回复来自
+							%strong=link_to topic.replies.last.member.name, member_url(topic.replies.last.member.name)
+				%td{width: "70px", align: "right", style: "vertical-align: middle"}
+					- if topic.replies.any?
+						%span.label.label-default.replies-count
+							=topic.replies.count
+	.panel-footer
+		= will_paginate @topics

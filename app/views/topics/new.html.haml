@@ -1,0 +1,14 @@
+.panel.panel-default
+	.panel-heading
+		%h4.panel-title 创作新主题
+	.panel-body
+		= simple_form_for @topic, defaults: { hint_html: { class: "meta" } } do |f|
+			= f.input :node_id, collection: @nodes, prompt: "选择节点", label: false, error: "请选择一个相关节点进行投递"
+			= f.input :title, error: "主题标题不能为空", label: false, placeholder: "主题标题"
+			= f.input :body, label: false, hint: "如果主题标题可以完整的表达主题，则主题内容可以为空", input_html: { rows: 15 }, placeholder: "Markdown supported and you can upload image using any external image hosting service."
+			= f.button :submit, "创作新主题", class: "btn btn-success btn-sm"
+	.panel-footer.text-right
+		想让您的主题受到更多关注，那么请 &nbsp;•&nbsp;
+		排版清晰 &nbsp;•&nbsp;
+		尊重他人 &nbsp;•&nbsp;
+		语义明确

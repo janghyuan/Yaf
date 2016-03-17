@@ -1,0 +1,64 @@
+- if member_signed_in?
+	.panel.panel-default
+		.panel-heading
+			%h3.user-info-title
+				=member_avatar current_member
+				=current_member.name
+		.panel-body
+			.row
+				.col-xs-1
+				.col-xs-4
+					= link_to "#{current_member.topics.count} 主题", my_topics_url(current_member.name)
+				.col-xs-1
+					|
+				.col-xs-4
+					= link_to "#{current_member.replies.count} 回复", my_replies_topics_url(current_member.name)
+				.col-xs-1
+					|
+				.col-xs-4
+					=link_to  "#{current_member.collection_count} 收藏", collection_url(current_member.name)
+				.col-xs-1
+		.panel-body
+			.btn-group.btn-group-justified
+				=link_to "创作新主题", new_topic_url, class: "btn btn-default"
+				- if current_member.admin?
+					=link_to "创建新节点", new_node_url, class: "btn btn-default"
+		.panel-footer
+			=link_to "#{current_member.unread_messages.count} 条未读提醒!", notifications_url
+
+.panel.panel-default.recent-nodes
+	.panel-heading
+		%h4.panel-title 最近新加节点
+	.panel-body
+		- Node.recent_nodes.each do |node|
+			=link_to node.name, node_url(node.slogan), class: "node-tag"
+
+.panel.panel-default.popular
+	.panel-heading
+		%h4.panel-title 今日热议主题
+	%table.table
+		- Topic.popular.each do |topic|
+			%tr
+				%td{style: "width: 24px; vertical-align: middle"}= member_avatar(topic.member, size: "24px")
+				%td= link_to topic.title, single_topic_url(topic)
+	.panel-footer
+		最近 24 小时内评论数大于 50 者
+	
+.panel.panel-default
+	.panel-heading
+		%h4.panel-title 社区统计信息
+	.panel-body
+		.meta
+			主题 : 
+			%strong
+				=Topic.all.count
+			%br/
+			回复 :
+			%strong
+				=Reply.all.count
+			%br/
+			会员 :
+			%strong
+				=Member.all.count
+	.panel-footer
+		=link_to "Gmail: 联系管理员", "mailto:janghuan@gmail.com"
